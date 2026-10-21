@@ -20,4 +20,9 @@ public class QuestionSO : ScriptableObject
     {
         return questionArray[resposta];
     }
+
+    public string[] GetQuestionArray()
+    {
+        return questionArray;
+    }
 }
