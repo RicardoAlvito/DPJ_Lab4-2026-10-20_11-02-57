@@ -9,16 +9,19 @@ public class Questuinary : MonoBehaviour
     [SerializeField] private int respostacerta;
     [SerializeField] private Button[] respostas_botoes = new Button[4];//Gosto mais como button do que GameObjects, mais fixe
 
-
+    
     public void OnAnswerSelected(int index) {
-        if (questionSO.GetAnswer() == respostas_botoes[index].GetComponentInChildren<TextMeshProUGUI>().text) {
+
+
+        string correctAnswer = questionSO.GetAnswer(questionSO.GetCorrectAnswerIndex());
+        if (questionSO.GetCorrectAnswerIndex() == index) {
             //resposta correta
-            respostas_botoes[index].GetComponentInChildren<TextMeshProUGUI>().text = "Correto!";
+            textMeshProUGUI.text = "Correto!";
         }
         else
         {
             //resposta errada
-            respostas_botoes[index].GetComponentInChildren<TextMeshProUGUI>().text = "ERRADO!";
+            textMeshProUGUI.text = "Desculpa, mas a \n resposta correta é:"+ correctAnswer;
         }
         SetButtonState(false);
     }
@@ -26,13 +29,10 @@ public class Questuinary : MonoBehaviour
     void DisplayQuestion()
     {
         textMeshProUGUI.text = questionSO.GetQuestion();
-
-        string[] vcvcvc = new string[4];
-        vcvcvc = questionSO.GetQuestionArray();
         //for loop
         for (int i = 0; i < respostas_botoes.Length; i++)
         {
-            respostas_botoes[i].GetComponentInChildren<TextMeshProUGUI>().text = vcvcvc[i];
+            respostas_botoes[i].GetComponentInChildren<TextMeshProUGUI>().text = questionSO.GetAnswer(i);
         }
     }
 
@@ -43,10 +43,16 @@ public class Questuinary : MonoBehaviour
             respostas_botoes[i].interactable = state;
         }
     }
+    void GetNextQuestion()
+    {
+        SetButtonState(true);
+        DisplayQuestion();
+
+
+    }
     void Start()
     {
-        DisplayQuestion();
-        SetButtonState(true);//gogogog
+        GetNextQuestion();
     }
 
     // Update is called once per frame

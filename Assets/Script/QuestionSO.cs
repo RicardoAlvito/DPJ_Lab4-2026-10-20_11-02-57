@@ -3,7 +3,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Question", menuName = "SQ/Question")]
 public class QuestionSO : ScriptableObject
 {
-    [TextArea(2, 5)]
+    [TextArea(2, 5)]    
     [SerializeField] private string question;
     [SerializeField] private string[] questionArray = new string[4]; 
     [SerializeField] private int resposta;
@@ -16,13 +16,8 @@ public class QuestionSO : ScriptableObject
     {
         return resposta;
     }
-    public string GetAnswer()
+    public string GetAnswer(int respostas)
     {
-        return questionArray[resposta];
-    }
-
-    public string[] GetQuestionArray()
-    {
-        return questionArray;
+        return questionArray[respostas];
     }
 }
