@@ -9,7 +9,15 @@ public class Questuinary : MonoBehaviour
     [SerializeField] private int respostacerta;
     [SerializeField] private Button[] respostas_botoes = new Button[4];//Gosto mais como button do que GameObjects, mais fixe
 
-    
+    /*estou no No script “Questionaire”, crie a variável bool HasAnsweredEarly;
+    o No script “Timer”, altere o nível de proteção do bool isAnsweringQuestion
+para public;
+ Agora, no método Upda*/
+    private Timer timer;
+    [SerializeField] private Image timerImage;
+    private bool hasAnsweredEarly;
+
+
     public void OnAnswerSelected(int index) {
 
 
@@ -24,6 +32,7 @@ public class Questuinary : MonoBehaviour
             textMeshProUGUI.text = "Desculpa, mas a \n resposta correta é:"+ correctAnswer;
         }
         SetButtonState(false);
+        timer.CancelTimer();
     }
 
     void DisplayQuestion()
@@ -52,12 +61,19 @@ public class Questuinary : MonoBehaviour
     }
     void Start()
     {
+        timer = FindObjectOfType<Timer>();
         GetNextQuestion();
     }
 
     // Update is called once per frame
     void Update()
     {
+        timerImage.fillAmount = timer.fillFraction;
+        if (timer.loadNextQuestion)
+        {
+            GetNextQuestion();
+            timer.loadNextQuestion = false;
+        }
 
     }
 }
