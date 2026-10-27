@@ -1,5 +1,8 @@
+using System;
+using Unity.Mathematics;
 using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Timer : MonoBehaviour
 {
@@ -12,6 +15,9 @@ public class Timer : MonoBehaviour
     public float fillFraction;
     public bool isAnsweringQuestion  = false;
     public bool loadNextQuestion = false;
+    [SerializeField] private Sprite[] imagens = new Sprite[4];
+    [SerializeField] private Image imagen;
+    private int d = 0;
 
     public void UpdateTimer()
     {
@@ -50,9 +56,18 @@ public class Timer : MonoBehaviour
         
     }
 
-    // Update is called once per frame
+    private int ss = 3;
     void Update()
     {
         UpdateTimer();
+        if ((int)timerValue % 3 == 0 && ss != (int)timerValue)
+        {
+            imagen.GetComponent<Image>().sprite = imagens[d];
+            d++;
+            if (d >= imagens.Length) { d = 0; }
+            ss = (int)timerValue;
+        }
+        Debug.Log(math.round(timerValue % 90));
+        Debug.Log(timerValue);
     }
 }

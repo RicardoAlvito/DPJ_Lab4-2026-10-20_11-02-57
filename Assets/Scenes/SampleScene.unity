@@ -1175,6 +1175,8 @@ MonoBehaviour:
   - {fileID: 1597825647}
   - {fileID: 1999392249}
   - {fileID: 630832997}
+  timer: {fileID: 0}
+  timerImage: {fileID: 89549732}
 --- !u!1 &997590444
 GameObject:
   m_ObjectHideFlags: 0
@@ -1323,8 +1325,9 @@ GameObject:
   - component: {fileID: 1129879922}
   - component: {fileID: 1129879924}
   - component: {fileID: 1129879923}
+  - component: {fileID: 1129879925}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: image
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1339,15 +1342,15 @@ RectTransform:
   m_GameObject: {fileID: 1129879921}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 30, y: 30, z: 30}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 805208894}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -824.6602, y: 368.19415}
-  m_SizeDelta: {x: 130.6796, y: 127.6117}
+  m_AnchoredPosition: {x: -592, y: -131}
+  m_SizeDelta: {x: 12, y: 14}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1129879923
 MonoBehaviour:
@@ -1369,8 +1372,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: -4092392457533364767, guid: 0b0ee00a425332c459d61f0eb72cb0b4, type: 3}
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1387,6 +1390,29 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1129879921}
   m_CullTransparentMesh: 1
+--- !u!114 &1129879925
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1129879921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bee94015839ad4691e9d63c388fd87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Timer
+  timeToCompleteQuestion: 10
+  timeToShowCorrectAnswer: 1
+  fillFraction: 0
+  isAnsweringQuestion: 0
+  loadNextQuestion: 0
+  imagens:
+  - {fileID: 8713120321045492238, guid: 81f16d1e155c71441950191dc135224d, type: 3}
+  - {fileID: 7900860951653682938, guid: 81f16d1e155c71441950191dc135224d, type: 3}
+  - {fileID: 583417684835264956, guid: 81f16d1e155c71441950191dc135224d, type: 3}
+  - {fileID: -7474615155744080074, guid: 81f16d1e155c71441950191dc135224d, type: 3}
+  imagen: {fileID: 1129879923}
 --- !u!114 &1597825647 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8271110266745383843, guid: aeae47d8bb1acaa47ba95ffae56fd39a, type: 3}

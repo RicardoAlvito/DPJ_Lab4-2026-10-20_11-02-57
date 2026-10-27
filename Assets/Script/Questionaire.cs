@@ -13,14 +13,14 @@ public class Questuinary : MonoBehaviour
     o No script “Timer”, altere o nível de proteção do bool isAnsweringQuestion
 para public;
  Agora, no método Upda*/
-    private Timer timer;
+    [SerializeField] private Timer timer;
     [SerializeField] private Image timerImage;
     private bool hasAnsweredEarly;
 
-
+    private int correctAnswerdddd;
     public void OnAnswerSelected(int index) {
-
-
+        hasAnsweredEarly = true;
+        correctAnswerdddd = index;
         string correctAnswer = questionSO.GetAnswer(questionSO.GetCorrectAnswerIndex());
         if (questionSO.GetCorrectAnswerIndex() == index) {
             //resposta correta
@@ -52,13 +52,13 @@ para public;
             respostas_botoes[i].interactable = state;
         }
     }
+
     void GetNextQuestion()
     {
         SetButtonState(true);
         DisplayQuestion();
-
-
     }
+
     void Start()
     {
         timer = FindObjectOfType<Timer>();
@@ -74,6 +74,28 @@ para public;
             GetNextQuestion();
             timer.loadNextQuestion = false;
         }
+        else if (hasAnsweredEarly && timer.isAnsweringQuestion) { 
+            DisplayAnswer(correctAnswerdddd);
+            hasAnsweredEarly = false;
+            SetButtonState(false);
+        }
 
+    }
+
+    void DisplayAnswer(int index)
+    {
+        string correctAnswer = questionSO.GetAnswer(questionSO.GetCorrectAnswerIndex());
+        if (questionSO.GetCorrectAnswerIndex() == index)
+        {
+            //resposta correta
+            textMeshProUGUI.text = "Correto!";
+        }
+        else
+        {
+            //resposta errada
+            textMeshProUGUI.text = "Desculpa, mas a \n resposta correta é:" + correctAnswer;
+        }
+        SetButtonState(false);
+        timer.CancelTimer();
     }
 }
